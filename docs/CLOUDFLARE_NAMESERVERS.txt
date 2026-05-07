@@ -1,0 +1,24 @@
+CLOUDFLARE NAMESERVERS FOR READYHOSTS.CO
+=========================================
+
+When you add readyhosts.co to Cloudflare, Cloudflare assigns TWO specific nameservers
+to your domain. They are unique to your account — NOT the generic ns1.cloudflare.com / ns2.cloudflare.com
+shown in old documentation.
+
+After completing the "Add a Site" flow in Cloudflare, paste the assigned nameservers here:
+
+  Primary:   __________________________.ns.cloudflare.com
+  Secondary: __________________________.ns.cloudflare.com
+
+Then enter both into GoDaddy:
+  GoDaddy → Domain Portfolio → readyhosts.co → DNS → Nameservers → "I'll use my own nameservers"
+
+IMPORTANT: This setup uses Cloudflare for DNS, NOT Vercel.
+Cloudflare proxies traffic to Vercel via a CNAME or A record (configured inside Cloudflare).
+Do NOT enter Vercel's nameservers (ns1.vercel-dns.com, etc.) into GoDaddy if using this setup.
+
+Email Routing Status: PENDING
+Forward: hello@readyhosts.co → nethaneel.nb.brown@gmail.com (change in Cloudflare if needed)
+Email Forwarding Test: PENDING
+
+PROPAGATION: 1–48 hours after GoDaddy save. Most networks resolve within 1–4 hours.

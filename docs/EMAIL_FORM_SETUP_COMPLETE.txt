@@ -1,0 +1,62 @@
+✓ READYHOST EMAIL & FORM SETUP — STATUS REPORT
+
+Setup Date: 2026-05-07
+Services Configured: Cloudflare Email Routing + Formspree
+
+------------------------------------------------------------
+FILES CREATED / UPDATED
+------------------------------------------------------------
+✓ src/ReadyHost_Main.jsx                      (updated — Formspree fetch + isSubmitting + error banner)
+✓ docs/CLOUDFLARE_SETUP_LOG.md                (new)
+✓ docs/CLOUDFLARE_NAMESERVERS.txt             (new — paste assigned nameservers from dashboard)
+✓ docs/FORMSPREE_CONFIG.txt                   (new — paste endpoint ID after creating form)
+✓ docs/EMAIL_FORM_ARCHITECTURE.md             (new — full data flow + troubleshooting)
+✓ docs/NEXT_STEPS_AFTER_EMAIL_SETUP.md        (new — Cloudflare-fronted deploy procedure)
+✓ docs/LAUNCH_CHECKLIST.md                    (updated — added Section 0: Email & Form Setup)
+
+------------------------------------------------------------
+CODE CHANGES IN ReadyHost_Main.jsx
+------------------------------------------------------------
+✓ Added FORMSPREE_ENDPOINT constant near top of file
+✓ Replaced mailto:-based handleSubmit with async fetch(FORMSPREE_ENDPOINT)
+✓ Added isSubmitting state — disables submit button during in-flight request
+✓ Added submitError state — renders red error banner on failure
+✓ Submit button shows "Sending…" while in flight, "Send Inquiry" otherwise
+✓ Form clears + success card displays on 200 response
+✓ Updated success copy: "Inquiry received." (no longer mentions mail client)
+✓ Added Formspree disclosure to consent text under submit button
+
+------------------------------------------------------------
+WHAT YOU NEED TO COMPLETE
+------------------------------------------------------------
+[ ] In Cloudflare browser tab (already open):
+      1. Enter "readyhosts.co" on the Add Site page
+      2. Select Free plan
+      3. Note the two assigned nameservers — paste into CLOUDFLARE_NAMESERVERS.txt
+      4. Enable Email Routing
+      5. Add custom address "hello" → forward to nethaneel.nb.brown@gmail.com
+      6. Confirm verification email at destination
+
+[✓] Formspree form created — endpoint xnjwbzke wired into src/ReadyHost_Main.jsx (line 18)
+[✓] FORMSPREE_CONFIG.txt updated with live endpoint URL
+[ ] First submission from the deployed site triggers Formspree's address-verification email —
+    open it and click the confirmation link to activate the endpoint
+[ ] In Formspree dashboard → verify AJAX submission is ENABLED (it's the default)
+
+[ ] After both above are done:
+      Follow docs/NEXT_STEPS_AFTER_EMAIL_SETUP.md for the GoDaddy → Cloudflare → Vercel cutover.
+
+------------------------------------------------------------
+CURRENT STATUS
+------------------------------------------------------------
+React component:        ✓ LIVE WIRING (Formspree endpoint xnjwbzke baked in at line 18)
+Cloudflare:             ⏳ PENDING (browser steps — add site, capture nameservers, enable Email Routing)
+Formspree:              ✓ FORM CREATED (https://formspree.io/forms/xnjwbzke → hello@readyhosts.co)
+DNS cutover:            ⏳ BLOCKED on Cloudflare nameservers being assigned
+Vercel deploy:          ⏳ NOT YET STARTED (see DEPLOYMENT_GUIDE.md or NEXT_STEPS_AFTER_EMAIL_SETUP.md)
+
+Domain:                 readyhosts.co
+Email forward target:   nethaneel.nb.brown@gmail.com (assumed — change in Cloudflare if needed)
+Branding:               Teal (#1B6C72) + Orange (#FF6B35)
+
+Next: Complete the two browser-side flows above, then move to NEXT_STEPS_AFTER_EMAIL_SETUP.md.

@@ -1,0 +1,51 @@
+FORMSPREE CONFIGURATION
+========================
+
+Form Name:            ReadyHost Contact Form
+Notification Email:   hello@readyhosts.co
+Formspree Endpoint:   https://formspree.io/f/xnjwbzke
+Endpoint ID:          xnjwbzke
+Manage form at:       https://formspree.io/forms/xnjwbzke
+
+Status:               ✓ ENDPOINT WIRED INTO src/ReadyHost_Main.jsx (line 18)
+Integration method:   Raw fetch + FormData (no @formspree/react package — kept dependency-free)
+
+----------------------------------------
+SPECIAL FIELDS USED
+----------------------------------------
+_subject     →  "New ReadyHost inquiry — {name}"  (sets the email subject in your inbox)
+_replyto     →  {email}  (set so clicking Reply on the notification responds to the submitter directly)
+
+----------------------------------------
+RECOMMENDED FORMSPREE SETTINGS
+----------------------------------------
+✓ Notification email:    hello@readyhosts.co
+✓ Spam filter:           ENABLED (default Akismet + honeypot)
+✓ AJAX submission:       ENABLED (required — our React form uses fetch with Accept: application/json)
+○ reCAPTCHA:             OPTIONAL (Formspree's free tier handles spam well without it for low volume)
+○ Custom redirect:       NOT NEEDED (our React form handles success state in-app)
+
+----------------------------------------
+TEST CHECKLIST (run after first deploy)
+----------------------------------------
+[ ] First submission triggers Formspree's "confirm this address" verification email
+    → click the link to activate the endpoint
+[ ] Subsequent submissions arrive at hello@readyhosts.co
+[ ] Once Cloudflare Email Routing is live, those forward to nethaneel.nb.brown@gmail.com
+[ ] Subject line in inbox: "New ReadyHost inquiry — Test User"
+[ ] Reply-to header is the submitter's email (clicking Reply opens with their address pre-filled)
+[ ] All 5 fields populated: name, email, phone, properties, message
+[ ] Submit button shows "Sending…" while in flight
+[ ] Form clears + "Inquiry received." card displays on success
+[ ] Submission shows up in Formspree dashboard at https://formspree.io/forms/xnjwbzke
+
+----------------------------------------
+WHY NOT @formspree/react?
+----------------------------------------
+The @formspree/react package wraps useState + fetch into a `useForm` hook with `state.submitting`,
+`state.succeeded`, and `state.errors`. We already implement the equivalent (isSubmitting, sent,
+submitError) by hand. Switching would:
+  - Add a runtime dependency
+  - Replace our nicer "Inquiry received." success card with a default <p>Thanks!</p> pattern
+  - Lose the custom error banner and form reset logic
+The raw-fetch approach is fewer lines, zero deps, and equivalent behavior. Stay put.
