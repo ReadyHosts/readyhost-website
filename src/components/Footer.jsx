@@ -48,12 +48,20 @@ export default function Footer() {
             <p className="mt-4 text-sm text-white/70 leading-relaxed">
               Airbnb cleaning with hotel-grade standards. Powered by ReadyHost technology.
             </p>
-            <a
-              href="mailto:hello@readyhosts.co"
-              className="mt-3 inline-block text-sm font-semibold text-white hover:text-[#FFA07A] transition-colors"
-            >
-              hello@readyhosts.co
-            </a>
+            <div className="mt-3 space-y-1">
+              <a
+                href="tel:+17548005566"
+                className="block text-sm font-semibold text-white hover:text-[#FFA07A] transition-colors"
+              >
+                (754) 800-5566
+              </a>
+              <a
+                href="mailto:hello@readyhosts.co"
+                className="block text-sm font-semibold text-white hover:text-[#FFA07A] transition-colors"
+              >
+                hello@readyhosts.co
+              </a>
+            </div>
           </div>
 
           {COLS.map((col) => (
