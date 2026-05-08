@@ -6,36 +6,36 @@ import React, { useState } from "react";
  * Brand: Teal #1B6C72 / Orange #FF6B35
  * Domain: readyhosts.co  |  Email: hello@readyhosts.co
  *
- * Drop this component into any React + Tailwind project as the page root.
- * No pricing is displayed anywhere by design.
+ * No pricing displayed (custom/contract-based).
+ * Form posts to Formspree — no mailto fallback.
  */
 
 const TEAL = "#1B6C72";
 const ORANGE = "#FF6B35";
 
 // Formspree endpoint — ReadyHost Contact Form (notifications to hello@readyhosts.co)
-// Manage form: https://formspree.io/forms/xnjwbzke
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjwbzke";
 
 const NAV_LINKS = [
   { label: "Services", href: "#services" },
+  { label: "How We Work", href: "#how" },
   { label: "Why Us", href: "#why" },
   { label: "Service Area", href: "#area" },
   { label: "Contact", href: "#contact" },
 ];
 
 const STATS = [
-  { value: "2,400+", label: "Properties cleaned" },
-  { value: "99.2%", label: "On-time turnover rate" },
-  { value: "4.9 / 5", label: "Average guest rating" },
-  { value: "24 / 7", label: "Same-day availability" },
+  { value: "50+", label: "Properties cleaned" },
+  { value: "98%", label: "On-time turnover rate" },
+  { value: "5\u2605", label: "Average guest rating" },
+  { value: "24 hr", label: "Same-day availability" },
 ];
 
 const SERVICES = [
   {
     title: "Airbnb Turnover Cleaning",
     body:
-      "Full-property reset between guests. Linens, bathrooms, kitchen, and staging — every surface reset to listing-photo standard.",
+      "Full-property reset between guests. Linens, bathrooms, kitchen, and staging — every surface back to listing-photo standard.",
   },
   {
     title: "Hotel-Grade Deep Cleans",
@@ -61,6 +61,27 @@ const SERVICES = [
     title: "Co-Host Friendly",
     body:
       "We integrate with your PMS or co-host workflow. Schedule via Turno, Hospitable, or direct — we plug in, you stay hands-off.",
+  },
+];
+
+const HOW_STEPS = [
+  {
+    num: "01",
+    title: "Tell us when",
+    body:
+      "Book through your PMS, text us, or use the form. Same-day requests welcome.",
+  },
+  {
+    num: "02",
+    title: "Vetted crew dispatched",
+    body:
+      "Our branded team rolls up on time with linens, supplies, and the checklist for your property.",
+  },
+  {
+    num: "03",
+    title: "Photo-verified clean",
+    body:
+      "Every turnover ends with a photo report and damage flag — sent to you before the next guest arrives.",
   },
 ];
 
@@ -146,22 +167,32 @@ export default function ReadyHostMain() {
     }
   };
 
+  const retrySubmit = () => {
+    setSubmitError("");
+  };
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans antialiased">
       {/* ============== NAV ============== */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <a href="#top" className="flex items-center gap-3">
-            <Logo />
-            <span className="font-bold text-xl tracking-tight text-gray-900">
-              ReadyHost
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+          <a href="#top" className="flex items-center gap-3 group">
+            <img
+              src="/logo.png"
+              alt="ReadyHost logo"
+              className="h-9 lg:h-11 w-auto transition-transform group-hover:scale-105"
+              loading="eager"
+            />
+            <span className="hidden sm:inline font-bold text-lg lg:text-xl tracking-tight">
+              <span className="text-[#1B6C72]">Ready</span>
+              <span className="text-[#FF6B35]">Hosts</span>
             </span>
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-7 lg:gap-9">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
@@ -173,7 +204,7 @@ export default function ReadyHostMain() {
             ))}
             <a
               href="#contact"
-              className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-[#FF6B35] hover:bg-[#e85a26] transition-colors shadow-sm"
+              className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#FF6B35] to-[#ff8554] hover:from-[#e85a26] hover:to-[#ff6b35] transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               Get a Quote
             </a>
@@ -183,7 +214,7 @@ export default function ReadyHostMain() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-gray-700 hover:bg-gray-100"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
           >
             <svg
               className="w-6 h-6"
@@ -213,13 +244,13 @@ export default function ReadyHostMain() {
         {/* Mobile dropdown */}
         {menuOpen && (
           <div className="md:hidden border-t border-gray-200 bg-white">
-            <div className="px-4 py-4 flex flex-col gap-3">
+            <div className="px-4 py-4 flex flex-col gap-2">
               {NAV_LINKS.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
                   onClick={closeMenu}
-                  className="text-base font-medium text-gray-800 hover:text-[#1B6C72] py-2"
+                  className="text-base font-medium text-gray-800 hover:text-[#1B6C72] py-2.5"
                 >
                   {l.label}
                 </a>
@@ -227,7 +258,7 @@ export default function ReadyHostMain() {
               <a
                 href="#contact"
                 onClick={closeMenu}
-                className="mt-2 inline-flex items-center justify-center px-4 py-3 rounded-lg text-sm font-semibold text-white bg-[#FF6B35] hover:bg-[#e85a26] transition-colors"
+                className="mt-3 inline-flex items-center justify-center px-5 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#FF6B35] to-[#ff8554]"
               >
                 Get a Quote
               </a>
@@ -239,27 +270,47 @@ export default function ReadyHostMain() {
       {/* ============== HERO ============== */}
       <section
         id="top"
-        className="relative overflow-hidden bg-gradient-to-br from-[#1B6C72] to-[#0f4a4f] text-white"
+        className="relative overflow-hidden text-white isolate"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        {/* Background image */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-20 bg-cover bg-center"
+          style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+        />
+        {/* Dark teal overlay for legibility */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0c4348]/95 via-[#1B6C72]/85 to-[#0c4348]/95"
+        />
+        {/* Orange accent blob */}
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-32 -right-32 w-[28rem] h-[28rem] rounded-full opacity-20 blur-2xl"
+          style={{ background: ORANGE }}
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
           <div className="max-w-3xl">
-            <span className="inline-block px-3 py-1 mb-6 rounded-full bg-white/10 border border-white/20 text-xs font-semibold tracking-wide uppercase">
+            <span className="inline-block px-4 py-1.5 mb-7 rounded-full bg-white/10 border border-white/20 text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
               Airbnb Cleaning · Hotel-Grade Standards
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05]">
               Cleaner canceled?
               <br />
-              <span className="text-[#FF6B35]">We&apos;ve got it handled.</span>
+              <span className="bg-gradient-to-r from-[#FF6B35] to-[#ffa07a] bg-clip-text text-transparent">
+                We&apos;ve got it handled.
+              </span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed">
+            <p className="mt-7 text-lg sm:text-xl text-white/90 max-w-2xl leading-relaxed">
               Same-day Airbnb turnovers run like hotel housekeeping. Vetted
-              crews, photo-verified checklists, and one number to call when the
-              booking can&apos;t slip — across Fort Lauderdale to Dania Beach.
+              crews, photo-verified checklists, and one number to call when
+              the booking can&apos;t slip — across South Florida.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg text-base font-semibold text-white bg-[#FF6B35] hover:bg-[#e85a26] transition-colors shadow-lg"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#FF6B35] to-[#ff8554] hover:from-[#e85a26] hover:to-[#ff6b35] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
               >
                 Request a Clean
                 <svg
@@ -278,32 +329,25 @@ export default function ReadyHostMain() {
               </a>
               <a
                 href="#services"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg text-base font-semibold text-white border border-white/30 hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-base font-semibold text-white border border-white/30 hover:bg-white/10 backdrop-blur-sm transition-colors"
               >
                 See Services
               </a>
             </div>
           </div>
         </div>
-
-        {/* decorative accent */}
-        <div
-          aria-hidden="true"
-          className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full opacity-20"
-          style={{ background: ORANGE }}
-        />
       </section>
 
       {/* ============== TRUST / STATS ============== */}
-      <section className="bg-[#f9fafb] border-y border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="bg-gradient-to-b from-white to-[#f9fafb] border-b border-gray-200/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#1B6C72]">
+                <div className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-br from-[#1B6C72] to-[#258086] bg-clip-text text-transparent">
                   {s.value}
                 </div>
-                <div className="mt-2 text-sm font-medium text-gray-600">
+                <div className="mt-3 text-sm font-medium text-gray-600">
                   {s.label}
                 </div>
               </div>
@@ -313,16 +357,16 @@ export default function ReadyHostMain() {
       </section>
 
       {/* ============== SERVICES ============== */}
-      <section id="services" className="py-20 lg:py-24 bg-white">
+      <section id="services" className="py-24 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-[#FF6B35]">
+          <div className="max-w-2xl mb-14">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-[#FF6B35]">
               Services
             </h2>
-            <p className="mt-2 text-3xl sm:text-4xl font-bold text-gray-900">
+            <p className="mt-3 text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
               Everything between checkout and check-in.
             </p>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-5 text-lg text-gray-600 leading-relaxed">
               Built for hosts who treat their listing like a business, not a
               side hustle.
             </p>
@@ -332,11 +376,11 @@ export default function ReadyHostMain() {
             {SERVICES.map((svc) => (
               <div
                 key={svc.title}
-                className="group p-6 rounded-xl border border-gray-200 bg-white hover:border-[#1B6C72] hover:shadow-md transition-all"
+                className="group p-7 rounded-2xl border border-gray-200 bg-white hover:border-[#1B6C72]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#1B6C72]/10 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1B6C72]/10 to-[#1B6C72]/20 flex items-center justify-center mb-5 group-hover:from-[#1B6C72] group-hover:to-[#258086] transition-colors">
                   <svg
-                    className="w-5 h-5 text-[#1B6C72]"
+                    className="w-6 h-6 text-[#1B6C72] group-hover:text-white transition-colors"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -361,26 +405,109 @@ export default function ReadyHostMain() {
         </div>
       </section>
 
-      {/* ============== WHY CHOOSE ============== */}
-      <section id="why" className="py-20 lg:py-24 bg-[#f9fafb]">
+      {/* ============== HOW WE WORK ============== */}
+      <section id="how" className="py-24 lg:py-28 bg-gradient-to-b from-[#f9fafb] to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-[#FF6B35]">
+                How We Work
+              </h2>
+              <p className="mt-3 text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
+                Same-day response. Professional team. Ready when you need us.
+              </p>
+              <p className="mt-5 text-lg text-gray-600 leading-relaxed">
+                Branded vans, vetted crews, and a workflow built for the moment a guest is checking in three hours from now.
+              </p>
+
+              <div className="mt-10 space-y-6">
+                {HOW_STEPS.map((step) => (
+                  <div key={step.num} className="flex gap-5">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#1B6C72] to-[#258086] flex items-center justify-center text-white font-bold shadow-md">
+                      {step.num}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-gray-600 leading-relaxed">
+                        {step.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center mt-10 px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#1B6C72] to-[#258086] hover:from-[#155357] hover:to-[#1f6a6f] transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              >
+                Book a turnover
+                <svg
+                  className="ml-2 w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="grid grid-cols-2 gap-4 lg:gap-5">
+                <div className="col-span-2">
+                  <img
+                    src="/fleet1.jpg"
+                    alt="ReadyHost branded fleet on location"
+                    loading="lazy"
+                    className="w-full h-72 lg:h-80 object-cover rounded-3xl shadow-xl"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="/fleet2.jpg"
+                    alt="ReadyHost crew at work"
+                    loading="lazy"
+                    className="w-full h-48 lg:h-56 object-cover rounded-2xl shadow-lg"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="/fleet3.jpg"
+                    alt="ReadyHost van"
+                    loading="lazy"
+                    className="w-full h-48 lg:h-56 object-cover rounded-2xl shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============== WHY CHOOSE ============== */}
+      <section id="why" className="py-24 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-[#FF6B35]">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-[#FF6B35]">
                 Why ReadyHost
               </h2>
-              <p className="mt-2 text-3xl sm:text-4xl font-bold text-gray-900">
+              <p className="mt-3 text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
                 Your turnover system, finally on rails.
               </p>
-              <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-                Most cleaning services are built for homes. We&apos;re built for
-                short-term rentals — where 11am checkout and 4pm check-in is a
-                hard line, not a suggestion. Every process we run is reverse-
-                engineered from how full-service hotels operate.
+              <p className="mt-5 text-lg text-gray-600 leading-relaxed">
+                Most cleaning services are built for homes. We&apos;re built for short-term rentals — where 11am checkout and 4pm check-in is a hard line, not a suggestion. Every process we run is reverse-engineered from how full-service hotels operate.
               </p>
               <a
                 href="#contact"
-                className="inline-flex items-center mt-8 px-5 py-3 rounded-lg text-sm font-semibold text-white bg-[#1B6C72] hover:bg-[#155357] transition-colors shadow-sm"
+                className="inline-flex items-center mt-9 px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#1B6C72] to-[#258086] hover:from-[#155357] hover:to-[#1f6a6f] transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
                 Talk to us
                 <svg
@@ -403,7 +530,7 @@ export default function ReadyHostMain() {
               {WHY.map((w) => (
                 <div
                   key={w.title}
-                  className="p-5 rounded-xl bg-white border border-gray-200"
+                  className="p-6 rounded-2xl bg-white border border-gray-200 hover:border-[#1B6C72]/40 hover:shadow-lg transition-all"
                 >
                   <h3 className="text-base font-bold text-gray-900">
                     {w.title}
@@ -419,32 +546,28 @@ export default function ReadyHostMain() {
       </section>
 
       {/* ============== SERVICE AREA ============== */}
-      <section id="area" className="py-20 lg:py-24 bg-white">
+      <section id="area" className="py-24 lg:py-28 bg-[#f9fafb]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
             <div className="lg:col-span-2">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-[#FF6B35]">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-[#FF6B35]">
                 Service Area
               </h2>
-              <p className="mt-2 text-3xl sm:text-4xl font-bold text-gray-900">
-                Fort Lauderdale to Dania Beach.
+              <p className="mt-3 text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
+                South Florida.
               </p>
-              <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-                We cover the South Florida coastal strip from Fort Lauderdale
-                Boulevard down through Hollywood and into Dania Beach. If your
-                listing is inside that corridor, we can be at your door — same
-                day if needed.
+              <p className="mt-5 text-lg text-gray-600 leading-relaxed">
+                We cover the tri-county short-term rental market — Broward, Miami-Dade, and Palm Beach. If your listing is in South Florida, we can be at your door, same day if needed.
               </p>
-              <ul className="mt-6 space-y-2 text-sm text-gray-700">
+              <ul className="mt-7 space-y-3 text-sm text-gray-700">
                 {[
-                  "Fort Lauderdale Beach & Las Olas",
-                  "Hollywood Beach",
-                  "Dania Beach",
-                  "Pompano (case by case)",
+                  "Broward County (Fort Lauderdale, Hollywood, Pompano)",
+                  "Miami-Dade County (Miami Beach, Brickell, Aventura, Sunny Isles)",
+                  "Palm Beach County (West Palm, Boca Raton, Delray Beach)",
                 ].map((c) => (
-                  <li key={c} className="flex items-center gap-2">
+                  <li key={c} className="flex items-start gap-3">
                     <span
-                      className="inline-block w-2 h-2 rounded-full"
+                      className="inline-block w-2 h-2 mt-1.5 rounded-full flex-shrink-0"
                       style={{ background: ORANGE }}
                     />
                     {c}
@@ -454,61 +577,16 @@ export default function ReadyHostMain() {
             </div>
 
             <div className="lg:col-span-3">
-              <div
-                className="relative rounded-2xl overflow-hidden border border-gray-200 bg-[#f9fafb]"
-                style={{ aspectRatio: "16 / 10" }}
-              >
-                {/* Stylized service-area illustration */}
-                <svg
-                  viewBox="0 0 800 500"
-                  className="w-full h-full"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <rect width="800" height="500" fill="#e8f1f2" />
-                  <path
-                    d="M0,0 L520,0 L500,500 L0,500 Z"
-                    fill="#d4e6e8"
-                  />
-                  <path
-                    d="M520,0 L800,0 L800,500 L500,500 Z"
-                    fill="#a8d0d4"
-                    opacity="0.4"
-                  />
-                  {/* Coverage zone */}
-                  <path
-                    d="M380,80 Q420,60 470,90 L490,260 Q495,360 460,430 Q420,460 380,430 Q360,340 365,240 Z"
-                    fill={TEAL}
-                    opacity="0.25"
-                    stroke={TEAL}
-                    strokeWidth="3"
-                    strokeDasharray="8,6"
-                  />
-                  {/* Pins */}
-                  <Pin x={420} y={120} label="Fort Lauderdale" />
-                  <Pin x={430} y={250} label="Hollywood" />
-                  <Pin x={425} y={370} label="Dania Beach" />
-                  <text
-                    x={620}
-                    y={50}
-                    fill="#1B6C72"
-                    fontFamily="system-ui, -apple-system, sans-serif"
-                    fontWeight="700"
-                    fontSize="18"
-                  >
-                    Atlantic
-                  </text>
-                  <text
-                    x={620}
-                    y={72}
-                    fill="#1B6C72"
-                    fontFamily="system-ui, -apple-system, sans-serif"
-                    fontWeight="700"
-                    fontSize="18"
-                  >
-                    Ocean
-                  </text>
-                </svg>
+              <div className="relative rounded-3xl overflow-hidden border border-gray-200 shadow-xl bg-white">
+                <iframe
+                  title="ReadyHost service area — South Florida"
+                  src="https://maps.google.com/maps?q=South+Florida&t=&z=8&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-[420px] lg:h-[480px]"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                />
               </div>
             </div>
           </div>
@@ -516,20 +594,31 @@ export default function ReadyHostMain() {
       </section>
 
       {/* ============== CONTACT ============== */}
-      <section id="contact" className="py-20 lg:py-24 bg-[#1B6C72] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section
+        id="contact"
+        className="py-24 lg:py-28 text-white relative overflow-hidden"
+      >
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gradient-to-br from-[#1B6C72] via-[#155357] to-[#0c4348]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-20 blur-3xl"
+          style={{ background: ORANGE }}
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-[#FF6B35]">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-[#FF6B35]">
                 Contact
               </h2>
-              <p className="mt-2 text-3xl sm:text-4xl font-bold">
+              <p className="mt-3 text-4xl sm:text-5xl font-bold tracking-tight">
                 Get a quote, or get same-day coverage.
               </p>
-              <p className="mt-4 text-lg text-white/85 leading-relaxed">
-                Tell us about your properties and we&apos;ll send pricing within
-                24 hours. Already in a bind? Mark your message URGENT and
-                we&apos;ll dispatch.
+              <p className="mt-5 text-lg text-white/85 leading-relaxed">
+                Tell us about your properties and we&apos;ll get back within 24 hours. Already in a bind? Mark your message URGENT and we&apos;ll dispatch.
               </p>
 
               <div className="mt-10 space-y-5">
@@ -548,17 +637,17 @@ export default function ReadyHostMain() {
                 <ContactRow
                   icon="map"
                   label="Service Area"
-                  value="Fort Lauderdale → Dania Beach, FL"
+                  value="South Florida (Broward · Miami-Dade · Palm Beach)"
                 />
               </div>
             </div>
 
-            <div className="bg-white text-gray-900 rounded-2xl shadow-xl p-6 sm:p-8">
+            <div className="bg-white text-gray-900 rounded-3xl shadow-2xl p-7 sm:p-9">
               {sent ? (
                 <div className="text-center py-12">
-                  <div className="w-14 h-14 rounded-full bg-[#1B6C72]/10 mx-auto flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1B6C72]/15 to-[#1B6C72]/5 mx-auto flex items-center justify-center">
                     <svg
-                      className="w-7 h-7 text-[#1B6C72]"
+                      className="w-8 h-8 text-[#1B6C72]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -566,29 +655,27 @@ export default function ReadyHostMain() {
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth={2}
+                        strokeWidth={2.5}
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
                   </div>
-                  <h3 className="mt-4 text-xl font-bold">
+                  <h3 className="mt-5 text-2xl font-bold">
                     Inquiry received.
                   </h3>
-                  <p className="mt-2 text-gray-600">
-                    We&apos;ll be back to you within 24 hours. For urgent
-                    same-day requests, call or text the number on file or
-                    email hello@readyhosts.co with URGENT in the subject.
+                  <p className="mt-2 text-gray-600 leading-relaxed max-w-sm mx-auto">
+                    We&apos;ll be back to you within 24 hours. For urgent same-day requests, email hello@readyhosts.co with URGENT in the subject.
                   </p>
                   <button
                     onClick={() => setSent(false)}
-                    className="mt-6 text-sm font-semibold text-[#1B6C72] hover:underline"
+                    className="mt-7 inline-flex items-center text-sm font-semibold text-[#1B6C72] hover:underline"
                   >
                     Send another inquiry
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <h3 className="text-xl font-bold text-gray-900">
+                  <h3 className="text-2xl font-bold text-gray-900">
                     Tell us about your properties
                   </h3>
                   <Field
@@ -625,7 +712,7 @@ export default function ReadyHostMain() {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-sm font-semibold text-gray-700 mb-1"
+                      className="block text-sm font-semibold text-gray-700 mb-1.5"
                     >
                       What do you need?
                     </label>
@@ -636,24 +723,55 @@ export default function ReadyHostMain() {
                       value={form.message}
                       onChange={handleChange}
                       placeholder="Same-day turnover, recurring cleans, deep clean, etc."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B6C72] focus:border-[#1B6C72] outline-none transition"
+                      className="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1B6C72] focus:border-[#1B6C72] outline-none transition"
                     />
                   </div>
                   {submitError && (
-                    <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
-                      {submitError}
+                    <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700 flex items-start justify-between gap-3">
+                      <span>{submitError}</span>
+                      <button
+                        type="button"
+                        onClick={retrySubmit}
+                        className="font-semibold text-red-800 hover:underline whitespace-nowrap"
+                      >
+                        Retry
+                      </button>
                     </div>
                   )}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center px-5 py-3 rounded-lg text-base font-semibold text-white bg-[#FF6B35] hover:bg-[#e85a26] disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors shadow-sm"
+                    className="w-full inline-flex items-center justify-center px-5 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#FF6B35] to-[#ff8554] hover:from-[#e85a26] hover:to-[#ff6b35] disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all shadow-md hover:shadow-lg"
                   >
-                    {isSubmitting ? "Sending\u2026" : "Send Inquiry"}
+                    {isSubmitting ? (
+                      <>
+                        <svg
+                          className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4zm2 5.3A8 8 0 014 12H0c0 3 1.1 5.8 3 7.9l3-2.6z"
+                          />
+                        </svg>
+                        {"Sending\u2026"}
+                      </>
+                    ) : (
+                      "Send Inquiry"
+                    )}
                   </button>
                   <p className="text-xs text-gray-500 text-center">
-                    By submitting you agree to be contacted by ReadyHost about
-                    your inquiry. Submissions are processed by Formspree.
+                    By submitting you agree to be contacted by ReadyHost about your inquiry. Submissions are processed by Formspree.
                   </p>
                 </form>
               )}
@@ -663,13 +781,21 @@ export default function ReadyHostMain() {
       </section>
 
       {/* ============== FOOTER ============== */}
-      <footer className="bg-[#0f4a4f] text-white/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <footer className="bg-[#0c4348] text-white/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div className="flex items-center gap-3">
-              <Logo />
+              <img
+                src="/logo.png"
+                alt="ReadyHost"
+                className="h-10 w-auto"
+                loading="lazy"
+              />
               <div>
-                <div className="font-bold text-white">ReadyHost</div>
+                <div className="font-bold text-white">
+                  <span>Ready</span>
+                  <span className="text-[#FF6B35]">Hosts</span>
+                </div>
                 <div className="text-xs text-white/60">
                   Airbnb Cleaning · Hotel-Grade Standards
                 </div>
@@ -698,11 +824,11 @@ export default function ReadyHostMain() {
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:justify-between gap-2 text-xs text-white/50">
+          <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:justify-between gap-2 text-xs text-white/50">
             <div>
               © {new Date().getFullYear()} ReadyHost. All rights reserved.
             </div>
-            <div>Fort Lauderdale → Dania Beach, FL</div>
+            <div>South Florida · Broward · Miami-Dade · Palm Beach</div>
           </div>
         </div>
       </footer>
@@ -712,24 +838,12 @@ export default function ReadyHostMain() {
 
 /* ============== Subcomponents ============== */
 
-function Logo() {
-  return (
-    <div
-      className="w-10 h-10 rounded-full flex items-center justify-center font-extrabold text-white shadow-sm"
-      style={{ background: TEAL }}
-      aria-label="ReadyHost logo"
-    >
-      RH
-    </div>
-  );
-}
-
 function Field({ label, name, value, onChange, type = "text", required, placeholder }) {
   return (
     <div>
       <label
         htmlFor={name}
-        className="block text-sm font-semibold text-gray-700 mb-1"
+        className="block text-sm font-semibold text-gray-700 mb-1.5"
       >
         {label}
         {required && <span className="text-[#FF6B35]"> *</span>}
@@ -742,7 +856,7 @@ function Field({ label, name, value, onChange, type = "text", required, placehol
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1B6C72] focus:border-[#1B6C72] outline-none transition"
+        className="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1B6C72] focus:border-[#1B6C72] outline-none transition"
       />
     </div>
   );
@@ -780,7 +894,7 @@ function ContactRow({ icon, label, value, href }) {
 
   const content = (
     <div className="flex items-start gap-4">
-      <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+      <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
         <svg
           className="w-5 h-5 text-white"
           fill="none"
@@ -791,7 +905,7 @@ function ContactRow({ icon, label, value, href }) {
         </svg>
       </div>
       <div>
-        <div className="text-xs uppercase tracking-wide text-white/60 font-semibold">
+        <div className="text-xs uppercase tracking-wider text-white/60 font-semibold">
           {label}
         </div>
         <div className="text-base font-medium text-white mt-0.5">{value}</div>
@@ -806,24 +920,4 @@ function ContactRow({ icon, label, value, href }) {
       </a>
     );
   return content;
-}
-
-function Pin({ x, y, label }) {
-  return (
-    <g>
-      <circle cx={x} cy={y} r="14" fill={ORANGE} opacity="0.25" />
-      <circle cx={x} cy={y} r="7" fill={ORANGE} />
-      <circle cx={x} cy={y} r="3" fill="#fff" />
-      <text
-        x={x + 18}
-        y={y + 5}
-        fill="#111827"
-        fontFamily="system-ui, -apple-system, sans-serif"
-        fontWeight="600"
-        fontSize="14"
-      >
-        {label}
-      </text>
-    </g>
-  );
 }
