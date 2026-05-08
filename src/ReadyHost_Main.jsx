@@ -414,7 +414,7 @@ export default function ReadyHostMain() {
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-cover bg-center lg:bg-fixed"
-          style={{ backgroundImage: "url('/fleet5.jpg')" }}
+          style={{ backgroundImage: "url('/fleet-motion.jpg')" }}
         />
         <div
           aria-hidden="true"
@@ -492,14 +492,14 @@ export default function ReadyHostMain() {
             <div className="lg:col-span-7">
               <div className="flex flex-col gap-5 lg:gap-6">
                 <img
-                  src="/fleet6.jpg"
-                  alt="ReadyHost branded van on location"
+                  src="/fleet-work1.jpg"
+                  alt="ReadyHost vans and crew on location"
                   loading="lazy"
                   className="w-full h-72 lg:h-[22rem] object-cover rounded-3xl shadow-xl"
                 />
                 <img
-                  src="/fleet5.jpg"
-                  alt="ReadyHost crew dispatched"
+                  src="/fleet-work2.jpg"
+                  alt="ReadyHost crew unloading curbside"
                   loading="lazy"
                   className="w-full h-56 lg:h-64 object-cover rounded-3xl shadow-lg"
                 />
@@ -629,13 +629,13 @@ export default function ReadyHostMain() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-[#FF6B35]">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-[#FFA07A]">
                 Contact
               </h2>
-              <p className="mt-3 text-4xl sm:text-5xl font-bold tracking-tight">
+              <p className="mt-3 text-4xl sm:text-5xl font-bold tracking-tight text-white">
                 Get a quote, or get same-day coverage.
               </p>
-              <p className="mt-5 text-lg text-white/85 leading-relaxed">
+              <p className="mt-5 text-lg text-white/95 leading-relaxed">
                 Tell us about your properties and we&apos;ll get back within 24 hours. Already in a bind? Mark your message URGENT and we&apos;ll dispatch.
               </p>
 
@@ -912,7 +912,7 @@ function ContactRow({ icon, label, value, href }) {
 
   const content = (
     <div className="flex items-start gap-4">
-      <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+      <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
         <svg
           className="w-5 h-5 text-white"
           fill="none"
@@ -923,10 +923,10 @@ function ContactRow({ icon, label, value, href }) {
         </svg>
       </div>
       <div>
-        <div className="text-xs uppercase tracking-wider text-white/60 font-semibold">
+        <div className="text-xs uppercase tracking-wider text-white/85 font-semibold">
           {label}
         </div>
-        <div className="text-base font-medium text-white mt-0.5">{value}</div>
+        <div className="text-base font-semibold text-white mt-0.5">{value}</div>
       </div>
     </div>
   );
