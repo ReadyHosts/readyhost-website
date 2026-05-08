@@ -141,6 +141,16 @@ export default function ReadyHostMain() {
     );
     if (form.email) payload.append("_replyto", form.email);
 
+    // Temporary debug logging — remove after verifying form works
+    // eslint-disable-next-line no-console
+    console.log("[ReadyHost] Submitting form to:", FORMSPREE_ENDPOINT, {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      properties: form.properties,
+      messageLen: form.message.length,
+    });
+
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
@@ -148,17 +158,30 @@ export default function ReadyHostMain() {
         headers: { Accept: "application/json" },
       });
 
+      // Temporary debug logging
+      // eslint-disable-next-line no-console
+      console.log(
+        "[ReadyHost] Formspree response:",
+        response.status,
+        response.statusText
+      );
+
+      const data = await response.json().catch(() => ({}));
+      // eslint-disable-next-line no-console
+      console.log("[ReadyHost] Formspree body:", data);
+
       if (response.ok) {
         setSent(true);
         setForm({ name: "", email: "", phone: "", properties: "", message: "" });
       } else {
-        const data = await response.json().catch(() => ({}));
         setSubmitError(
           data?.errors?.[0]?.message ||
-            "We couldn't send that. Please try again or email hello@readyhosts.co directly."
+            `We couldn't send that (status ${response.status}). Try again or email hello@readyhosts.co directly.`
         );
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("[ReadyHost] Form submission error:", err);
       setSubmitError(
         "Network error. Please try again or email hello@readyhosts.co directly."
       );
