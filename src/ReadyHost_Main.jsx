@@ -490,31 +490,19 @@ export default function ReadyHostMain() {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="grid grid-cols-2 gap-4 lg:gap-5">
-                <div className="col-span-2">
-                  <img
-                    src="/fleet1.jpg"
-                    alt="ReadyHost branded fleet on location"
-                    loading="lazy"
-                    className="w-full h-72 lg:h-80 object-cover rounded-3xl shadow-xl"
-                  />
-                </div>
-                <div>
-                  <img
-                    src="/fleet2.jpg"
-                    alt="ReadyHost crew at work"
-                    loading="lazy"
-                    className="w-full h-48 lg:h-56 object-cover rounded-2xl shadow-lg"
-                  />
-                </div>
-                <div>
-                  <img
-                    src="/fleet3.jpg"
-                    alt="ReadyHost van"
-                    loading="lazy"
-                    className="w-full h-48 lg:h-56 object-cover rounded-2xl shadow-lg"
-                  />
-                </div>
+              <div className="flex flex-col gap-5 lg:gap-6">
+                <img
+                  src="/fleet6.jpg"
+                  alt="ReadyHost branded van on location"
+                  loading="lazy"
+                  className="w-full h-72 lg:h-[22rem] object-cover rounded-3xl shadow-xl"
+                />
+                <img
+                  src="/fleet5.jpg"
+                  alt="ReadyHost crew dispatched"
+                  loading="lazy"
+                  className="w-full h-56 lg:h-64 object-cover rounded-3xl shadow-lg"
+                />
               </div>
             </div>
           </div>
