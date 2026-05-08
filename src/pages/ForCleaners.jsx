@@ -34,7 +34,7 @@ const REQUIREMENTS = [
 
 const FAQS = [
   { q: "How often will I get work?", a: "Depends on your availability and rating. Cleaners with 5-day open availability and 4.8★+ ratings typically run 4–6 jobs per day. Part-timers can pick up 2–3 jobs daily on the days they're free." },
-  { q: "How much do I earn per job?", a: "Base pay ranges $30–$60 per turnover depending on property size and complexity. Add same-day urgent +$10, and performance bonuses on top. Top cleaners clear $1,200–$1,800/week." },
+  { q: "How much do I earn per job?", a: "We pay a competitive base rate per turnover that varies with property size and complexity. Same-day urgent jobs earn an additional per-job premium, and performance bonuses stack on top. Specific pay structure shared during onboarding." },
   { q: "What if I can't complete a job?", a: "Cancel from the app at least 4 hours out — no penalty. Last-minute cancellations affect your reliability score and bonus eligibility." },
   { q: "How do bonuses work?", a: "Monthly bonus pool tied to four metrics: on-time rate (95%+), photo quality (audit pass rate), guest/host rating average, and total job count. Top performers earn $50–$200/month on top of base." },
   { q: "Do I need my own supplies?", a: "Standard supplies (cleaning chemicals, microfibers, vacuum) are property-stocked or provided by us. You bring your work ethic." },
@@ -95,11 +95,11 @@ export default function ForCleaners() {
               <ul className="space-y-4 text-base text-gray-700">
                 <li className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full" style={{ background: "#FF6B35" }} />
-                  <span><strong className="text-gray-900">Base pay:</strong> $30–$60 per turnover (varies by size & complexity)</span>
+                  <span><strong className="text-gray-900">Base pay:</strong> Competitive base rate per turnover (varies by size & complexity)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full" style={{ background: "#FF6B35" }} />
-                  <span><strong className="text-gray-900">Urgent / same-day uplift:</strong> +$10 per qualifying job</span>
+                  <span><strong className="text-gray-900">Urgent / same-day uplift:</strong> Per-job premium for qualifying urgent dispatches</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-2 h-2 mt-2 rounded-full" style={{ background: "#FF6B35" }} />
@@ -115,8 +115,8 @@ export default function ForCleaners() {
                 </li>
               </ul>
               <p className="mt-6 p-4 rounded-xl bg-[#1B6C72]/5 border border-[#1B6C72]/20 text-sm text-gray-700">
-                <strong className="text-[#1B6C72]">Typical day:</strong> 4–5 properties cleaned = <strong>$150–$250</strong> + bonuses on top.
-                Full-time cleaners with 5★ ratings clear <strong>$1,200–$1,800/week</strong>.
+                <strong className="text-[#1B6C72]">Typical day:</strong> 4–5 properties cleaned plus performance bonuses on top.
+                Full-time cleaners with 5★ ratings build a strong, predictable weekly income.
               </p>
             </div>
             <div>
