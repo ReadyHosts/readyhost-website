@@ -190,14 +190,14 @@ export default function ReadyHostMain() {
     <div className="min-h-screen bg-white text-gray-900 font-sans antialiased overflow-x-hidden">
       {/* ============== NAV ============== */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 md:h-24">
           <a href="#top" className="flex items-center gap-2 group" aria-label="ReadyHost home">
             <img
               src="/logo.png"
               alt="ReadyHost"
-              className="h-10 sm:h-11 lg:h-12 w-auto motion-safe:transition-transform motion-safe:group-hover:scale-105"
+              className="h-14 sm:h-16 lg:h-20 w-auto motion-safe:transition-transform motion-safe:group-hover:scale-105"
               loading="eager"
-              width="120"
+              width="160"
               height="80"
             />
           </a>
@@ -838,9 +838,9 @@ export default function ReadyHostMain() {
               <img
                 src="/logo.png"
                 alt="ReadyHost"
-                className="h-10 sm:h-12 w-auto"
+                className="h-14 sm:h-16 lg:h-20 w-auto"
                 loading="lazy"
-                width="120"
+                width="160"
                 height="80"
               />
             </div>
