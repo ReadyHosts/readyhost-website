@@ -5,7 +5,7 @@ const NAV_LINKS = [
   { label: "Services", href: "/#services" },
   { label: "For Hosts", to: "/for-hosts" },
   { label: "For Cleaners", to: "/for-cleaners" },
-  { label: "For PMs", to: "/for-property-managers" },
+  { label: "For PMCs", to: "/for-pmcs" },
   { label: "For Hotels", to: "/for-hotels" },
   { label: "Add-ons", to: "/add-ons" },
 ];

@@ -5,6 +5,7 @@ import Home from "./pages/Home.jsx";
 import ForHosts from "./pages/ForHosts.jsx";
 import ForCleaners from "./pages/ForCleaners.jsx";
 import ForPropertyManagers from "./pages/ForPropertyManagers.jsx";
+import ForPMCs from "./pages/ForPMCs.jsx";
 import ForHotels from "./pages/ForHotels.jsx";
 import AddOns from "./pages/AddOns.jsx";
 import Contact from "./pages/Contact.jsx";
@@ -38,6 +39,7 @@ const TITLES = {
   "/for-hosts": "For Airbnb Hosts | ReadyHost",
   "/for-cleaners": "Join Our Cleaning Team | ReadyHost",
   "/for-property-managers": "For Property Managers | ReadyHost",
+  "/for-pmcs": "For Property Management Companies | ReadyHost",
   "/for-hotels": "Hotel Housekeeping at Scale | ReadyHost",
   "/add-ons": "Add-on Services | ReadyHost",
   "/contact": "Contact | ReadyHost",
@@ -61,6 +63,7 @@ export default function App() {
         <Route path="/for-hosts" element={<ForHosts />} />
         <Route path="/for-cleaners" element={<ForCleaners />} />
         <Route path="/for-property-managers" element={<ForPropertyManagers />} />
+        <Route path="/for-pmcs" element={<ForPMCs />} />
         <Route path="/for-hotels" element={<ForHotels />} />
         <Route path="/add-ons" element={<AddOns />} />
         <Route path="/contact" element={<Contact />} />

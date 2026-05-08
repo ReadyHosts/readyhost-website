@@ -7,7 +7,7 @@ const COLS = [
     links: [
       { label: "Airbnb Cleaning", to: "/for-hosts" },
       { label: "Hotel Housekeeping", to: "/for-hotels" },
-      { label: "Property Manager", to: "/for-property-managers" },
+      { label: "Property Mgmt Companies", to: "/for-pmcs" },
       { label: "Add-on Services", to: "/add-ons" },
     ],
   },
