@@ -25,9 +25,9 @@ const NAV_LINKS = [
 ];
 
 const STATS = [
-  { value: "50+", label: "Properties cleaned" },
+  { value: "3,800+", label: "Properties cleaned" },
   { value: "98%", label: "On-time turnover rate" },
-  { value: "5\u2605", label: "Average guest rating" },
+  { value: "4.9\u2605", label: "Airbnb rating" },
   { value: "24 hr", label: "Same-day availability" },
 ];
 
