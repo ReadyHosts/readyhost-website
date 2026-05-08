@@ -48,7 +48,7 @@ export default function ForCleaners() {
         headline="Join ReadyHost and grow"
         highlight="your cleaning business."
         sub="Consistent work. Fair pay. The app and tools to actually do the job well."
-        bgImage="/fleet-work2.jpg"
+        bgImage="/cleaner-hero.jpg"
         primaryLabel="Apply to Join"
         primaryTo="/contact?type=cleaner"
         secondaryLabel="Earnings & Benefits"

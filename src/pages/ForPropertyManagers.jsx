@@ -49,7 +49,7 @@ export default function ForPropertyManagers() {
         headline="Manage multiple properties,"
         highlight="zero headaches."
         sub="Enterprise-grade cleaning coordination powered by the ReadyHost platform. Built for portfolios from 5 to 500+ properties."
-        bgImage="/fleet-work1.jpg"
+        bgImage="/pm-hero.jpg"
         primaryLabel="Request a Demo"
         primaryTo="/contact?type=pm"
         secondaryLabel="Talk to us"

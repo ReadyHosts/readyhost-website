@@ -63,7 +63,7 @@ export default function ForHotels() {
         headline="Hotel-grade housekeeping."
         highlight="Same-day turnarounds. Guaranteed SLAs."
         sub="Flexible contract terms. Scalable from boutique 12-room properties to 500+ room flagships across South Florida."
-        bgImage="/hero-bg.jpg"
+        bgImage="/hotel-hero.jpg"
         primaryLabel="Get a Quote"
         primaryTo="/contact?type=hotel"
         secondaryLabel="Schedule a Meeting"
