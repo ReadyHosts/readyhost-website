@@ -614,7 +614,7 @@ export default function ReadyHostMain() {
       {/* ============== CONTACT ============== */}
       <section
         id="contact"
-        className="py-24 lg:py-28 text-white relative overflow-hidden"
+        className="py-24 lg:py-28 text-white relative overflow-hidden isolate"
       >
         <div
           aria-hidden="true"
