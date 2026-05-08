@@ -272,16 +272,16 @@ export default function ReadyHostMain() {
         id="top"
         className="relative overflow-hidden text-white isolate"
       >
-        {/* Background image */}
+        {/* Background image — operations in motion */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-20 bg-cover bg-center"
+          className="absolute inset-0 -z-20 bg-cover bg-center scale-105"
           style={{ backgroundImage: "url('/hero-bg.jpg')" }}
         />
-        {/* Dark teal overlay for legibility */}
+        {/* Lighter overlay so the imagery shows through */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0c4348]/95 via-[#1B6C72]/85 to-[#0c4348]/95"
+          className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0c4348]/85 via-[#1B6C72]/60 to-[#0c4348]/80"
         />
         {/* Orange accent blob */}
         <div
@@ -401,6 +401,36 @@ export default function ReadyHostMain() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============== IN MOTION BAND ============== */}
+      <section
+        aria-label="ReadyHost crews on the road"
+        className="relative h-[55vh] min-h-[380px] overflow-hidden"
+      >
+        {/* Parallax-style fixed bg on desktop, scroll on mobile */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center lg:bg-fixed"
+          style={{ backgroundImage: "url('/fleet5.jpg')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-[#0c4348]/90 via-[#0c4348]/55 to-transparent"
+        />
+        <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+          <div className="max-w-xl text-white">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
+              In Motion
+            </span>
+            <h2 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]">
+              Branded crews on the road across South Florida.
+            </h2>
+            <p className="mt-5 text-lg text-white/85 max-w-lg leading-relaxed">
+              Same uniform. Same checklist. Same outcome — every clean, every property, every guest.
+            </p>
           </div>
         </div>
       </section>
