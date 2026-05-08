@@ -59,7 +59,8 @@ export default function ForHosts() {
         headline="Manage your Airbnb cleanings"
         highlight="like a pro."
         sub="Real-time updates. Photo verification. Direct communication with your cleaner — through the ReadyHost app."
-        bgImage="/fleet-motion.jpg"
+        bgImage="/host-hero.jpg"
+        bgPosition="center 35%"
         primaryLabel="Get Started"
         primaryTo="/contact?type=host"
         secondaryLabel="See Pricing"
@@ -103,7 +104,7 @@ export default function ForHosts() {
               <StepList items={STEPS} />
             </div>
             <div className="lg:col-span-7">
-              <img src="/fleet-work1.jpg" alt="ReadyHost crew arriving for a turnover" loading="lazy" decoding="async" className="w-full h-72 sm:h-96 lg:h-[28rem] object-cover rounded-2xl sm:rounded-3xl shadow-xl" />
+              <img src="/fleet-work1.jpg" alt="ReadyHost crew arriving for a turnover" loading="lazy" decoding="async" className="w-full h-72 sm:h-96 lg:h-[28rem] object-cover object-center rounded-2xl sm:rounded-3xl shadow-xl" />
             </div>
           </div>
         </div>

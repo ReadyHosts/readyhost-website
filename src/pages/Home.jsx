@@ -157,8 +157,8 @@ export default function Home() {
             </div>
             <div className="lg:col-span-7">
               <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6">
-                <img src="/fleet-work1.jpg" alt="ReadyHost vans and crew on location" loading="lazy" decoding="async" className="w-full h-56 sm:h-72 lg:h-[22rem] object-cover rounded-2xl sm:rounded-3xl shadow-xl" />
-                <img src="/fleet-work2.jpg" alt="ReadyHost crew loading linens curbside" loading="lazy" decoding="async" className="w-full h-44 sm:h-56 lg:h-64 object-cover rounded-2xl sm:rounded-3xl shadow-lg" />
+                <img src="/fleet-work1.jpg" alt="ReadyHost vans and crew on location" loading="lazy" decoding="async" className="w-full h-56 sm:h-72 lg:h-[22rem] object-cover object-center rounded-2xl sm:rounded-3xl shadow-xl" />
+                <img src="/fleet-work2.jpg" alt="ReadyHost crew loading linens curbside" loading="lazy" decoding="async" className="w-full h-44 sm:h-56 lg:h-64 object-cover object-center rounded-2xl sm:rounded-3xl shadow-lg" />
               </div>
             </div>
           </div>

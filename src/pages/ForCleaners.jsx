@@ -120,7 +120,7 @@ export default function ForCleaners() {
               </p>
             </div>
             <div>
-              <img src="/fleet-work2.jpg" alt="ReadyHost cleaner" loading="lazy" decoding="async" className="w-full h-72 sm:h-96 lg:h-[28rem] object-cover rounded-2xl sm:rounded-3xl shadow-xl" />
+              <img src="/fleet-work2.jpg" alt="ReadyHost cleaner" loading="lazy" decoding="async" className="w-full h-72 sm:h-96 lg:h-[28rem] object-cover object-center rounded-2xl sm:rounded-3xl shadow-xl" />
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ export default function PageHero({
   highlight, // optional second-line highlighted phrase
   sub,
   bgImage,
+  bgPosition = "center", // CSS background-position; tune per-image when subject isn't centered
   primaryLabel,
   primaryTo,
   secondaryLabel,
@@ -20,14 +21,16 @@ export default function PageHero({
   return (
     <section
       className={`relative overflow-hidden text-white isolate ${
-        small ? "" : "min-h-[60vh]"
+        small
+          ? "min-h-[420px] sm:min-h-[480px]"
+          : "min-h-[520px] sm:min-h-[60vh] lg:min-h-[640px]"
       }`}
     >
       {bgImage && (
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-20 bg-cover bg-center motion-safe:scale-105"
-          style={{ backgroundImage: `url('${bgImage}')` }}
+          className="absolute inset-0 -z-20 bg-cover motion-safe:scale-105"
+          style={{ backgroundImage: `url('${bgImage}')`, backgroundPosition: bgPosition }}
         />
       )}
       <div
