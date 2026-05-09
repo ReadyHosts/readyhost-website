@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import FloatingMobileCTA from "./FloatingMobileCTA.jsx";
+import ReadyHostChat from "./ReadyHostChat.jsx";
 
 export default function Layout({ children }) {
   return (
@@ -10,6 +11,7 @@ export default function Layout({ children }) {
       <main>{children}</main>
       <Footer />
       <FloatingMobileCTA />
+      <ReadyHostChat />
     </div>
   );
 }
