@@ -19,7 +19,6 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjwbzke";
 const TOAST_SESSION_KEY = "rh_chat_toast_shown";
 const TOAST_DELAY_MS = 3000;
-const TOAST_DISMISS_MS = 5000;
 
 const SUGGESTED_OPENERS = [
   "I host on Airbnb",
@@ -106,21 +105,8 @@ export default function ReadyHostChat({ apiPath = "/api/chat" }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Auto-dismiss + click-anywhere dismiss
-  useEffect(() => {
-    if (!showToast) return;
-    const dismissT = setTimeout(() => setShowToast(false), TOAST_DISMISS_MS);
-    const onAnyClick = () => setShowToast(false);
-    // Slight delay before binding click handler so the toast itself isn't dismissed by the same render-tick click
-    const bindT = setTimeout(() => {
-      window.addEventListener("click", onAnyClick, { passive: true });
-    }, 200);
-    return () => {
-      clearTimeout(dismissT);
-      clearTimeout(bindT);
-      window.removeEventListener("click", onAnyClick);
-    };
-  }, [showToast]);
+  // Toast is persistent — only closes when user clicks "Got it", X, or opens the chat bubble.
+  // No auto-dismiss timer, no click-anywhere dismiss.
 
   // Auto-scroll to bottom on new content
   useEffect(() => {
@@ -296,31 +282,23 @@ export default function ReadyHostChat({ apiPath = "/api/chat" }) {
         <div
           role="status"
           aria-live="polite"
-          onClick={(e) => {
-            e.stopPropagation();
-            setShowToast(false);
-          }}
-          className="fixed bottom-24 right-4 md:bottom-28 md:right-6 z-[55] max-w-[calc(100vw-2rem)] sm:max-w-xs bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 cursor-pointer"
+          className="fixed bottom-24 right-4 md:bottom-28 md:right-6 z-[55] max-w-[calc(100vw-2rem)] sm:max-w-xs bg-white rounded-2xl shadow-2xl border border-gray-200 p-4"
           style={{ animation: "rhSlideUp 0.25s ease-out" }}
         >
           <p className="text-sm text-gray-800 leading-snug pr-6">
-            <span className="text-[#FF6B35]">💬</span> Quick response? Chat with me here — no forms, just questions.
+            <span className="text-[#FF6B35]">💬</span> For a quicker response, please use our chat assistant!
           </p>
           <button
             type="button"
             aria-label="Dismiss"
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowToast(false);
-            }}
+            onClick={() => setShowToast(false)}
             className="absolute top-2 right-2 w-6 h-6 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 flex items-center justify-center text-xs font-bold"
           >
             ×
           </button>
           <button
             type="button"
-            onClick={(e) => {
-              e.stopPropagation();
+            onClick={() => {
               setShowToast(false);
               setOpen(true);
             }}
