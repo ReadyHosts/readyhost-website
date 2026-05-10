@@ -199,6 +199,46 @@ export default function ForPMCs() {
         </div>
       </section>
 
+      {/* Integrates with */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Integrates With"
+            title="Your existing stack, plugged in."
+            sub="We connect to the property management, OTA, and accounting tools you already run. Custom integrations available for enterprise portfolios."
+            align="center"
+          />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+            {[
+              { name: "Hospitable", category: "PMS" },
+              { name: "Hostfully", category: "PMS" },
+              { name: "Guesty", category: "PMS" },
+              { name: "Turno", category: "PMS" },
+              { name: "OwnerRez", category: "PMS" },
+              { name: "Airbnb", category: "OTA" },
+              { name: "Vrbo", category: "OTA" },
+              { name: "QuickBooks", category: "Accounting" },
+            ].map((tool) => (
+              <div
+                key={tool.name}
+                className="group flex flex-col items-center justify-center text-center px-4 py-6 sm:py-8 rounded-2xl bg-[#f5f5f5] border border-gray-200/60 motion-safe:transition-all motion-safe:duration-200 hover:bg-white hover:border-[#1B6C72]/40 hover:shadow-lg motion-safe:hover:-translate-y-0.5 lg:hover:scale-[1.03]"
+                aria-label={`Integrates with ${tool.name}`}
+              >
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 tracking-tight">
+                  {tool.name}
+                </span>
+                <span className="mt-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-[#1B6C72]/80 group-hover:text-[#FF6B35] transition-colors">
+                  {tool.category}
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-sm text-gray-500">
+            Don't see your tool? <a href="/contact?type=pm" className="text-[#1B6C72] font-semibold hover:underline">Ask about a custom integration</a>.
+          </p>
+        </div>
+      </section>
+
       {/* Service Area / Add-ons summary band */}
       <section className="py-12 sm:py-16 bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
